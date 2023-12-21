@@ -8,16 +8,12 @@ public class Ui {
 
     public void spausdinkMenu() {
         System.out.println("""
-           ===BIBLIOTEKAS VALDYMO PROGRAMA===
-               1. Prideti knyga
-               2. Pasalinti knyga
-               3. Rodyti knygu sarasa
+              ==========BIBLIOTEKAS VALDYMO PROGRAMA=============
+               1. Prideti knyga         4. Prideti skaitytoja
+               2. Pasalinti knyga       5. Pasalinti skaitytoja
+               3. Rodyti knygu sarasa   6. Rodyti skaitytoju sarasa
                
-               4. Prideti skaitytoja
-               5. Pasalinti skaitytoja
-               6. Rodyti skaitytoju sarasa
-               7. Ieskoti knygos
-               X. Baigti darba
+               7. Ieskoti knygos        X. Baigti darba
                                 
                Pasirinkite veiksma
                 """);
@@ -36,5 +32,9 @@ public class Ui {
     public String getUserInput(String msg){
         System.out.print(msg);
         return sc.nextLine();
+    }
+
+    public void infoOut(String msg){
+        System.out.println(msg);
     }
 }

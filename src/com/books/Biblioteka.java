@@ -1,6 +1,5 @@
 package com.books;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +58,7 @@ public class Biblioteka {
                                                 book.getAuthor().toLowerCase().contains(searchText) ||
                                                 book.getYear().toLowerCase().contains(searchText)).toList();
 
+        System.out.println(fltrBookArr);
         printBookList(fltrBookArr);
 
     }
@@ -96,17 +96,17 @@ public class Biblioteka {
     }
 
     private void printBookList(List<Book> bookList){
-        System.out.println(String.format("%3s. %20s --- %30s --- %4s", "ID", "Author", "Title", "Year"));
+        ui.infoOut(String.format("%3s. %20s --- %30s --- %4s", "ID", "Author", "Title", "Year"));
 
-        for (Book book : bookArr) {
-            System.out.println(book.toFancyString());
+        for (Book book : bookList) {
+            ui.infoOut(book.toFancyString());
         }
-        System.out.println();//line break
+
     }
 
 
     private void addReader(){
-        System.out.println("Skaitytojo ivestis. Iveskite skaitytojo");
+        ui.infoOut("Skaitytojo ivestis. Iveskite skaitytojo");
 
         String vardas = ui.getUserInput("\t•Varda: ");
         String telephone = ui.getUserInput("\t•Telephone: ");
@@ -122,26 +122,25 @@ public class Biblioteka {
         try{
             pasirinkimas = Integer.parseInt(pasirinkimasStr);
         } catch (NumberFormatException e) {
-            System.out.println("Blogai ivedei ID - skaitytojas nebuvo istrintas");
+            ui.infoOut("Blogai ivedei ID - skaitytojas nebuvo istrintas");
         }
 
         for (Reader reader : readerArr) {
             if (reader.getId() == pasirinkimas){
                 readerArr.remove(reader);
-                System.out.println("Skaitytojas istrintas\n" + reader.toFancyString());
+                ui.infoOut("Skaitytojas istrintas\n" + reader.toFancyString());
                 break;
             }
-
         }
 
     }
 
     private void printAllReaders() {
-        System.out.println(String.format("%3s. %20s --- %19s --- %8s", "id", "Vardas", "telephone", "regDate"));
+        ui.infoOut(String.format("%3s. %20s --- %19s --- %8s", "id", "Vardas", "telephone", "regDate"));
+
         for (Reader reader : readerArr) {
-            System.out.println(reader.toFancyString());
+            ui.infoOut(reader.toFancyString());
         }
-        System.out.println();//line break
     }
 
 
