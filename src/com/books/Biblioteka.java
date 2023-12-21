@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteka {
-    Ui ui;
+    UI ui;
     List<Book> bookArr = new ArrayList<>();
     List<Reader> readerArr = new ArrayList<>();
 
-    public Biblioteka(Ui ui) {
+    public Biblioteka(UI ui) {
         this.ui = ui;
     }
 
@@ -28,14 +28,7 @@ public class Biblioteka {
 
         //---------------test data END
 
-
-        boolean nebaigti = true;
-        while (nebaigti) {
-            ui.spausdinkMenu();
-            String vartotojoPasirinkimas = ui.getVartotojoPasirinkimas();
-            nebaigti = apdorokPasirinkima(vartotojoPasirinkimas);
-        }
-        ui.scannerClose();
+        ui.start(this);
     }
 
     boolean apdorokPasirinkima(String str) {
@@ -64,7 +57,7 @@ public class Biblioteka {
     }
 
     private void addBook() {
-        System.out.println("Knygos ivestis. Iveskite knygos");
+        ui.infoOut("Knygos ivestis. Iveskite knygos");
 
         String title = ui.getUserInput("\t• Pavadinima: ");
         String author = ui.getUserInput("\t• Autoriu: ");

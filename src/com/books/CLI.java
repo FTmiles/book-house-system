@@ -3,9 +3,22 @@ package com.books;
 import java.util.Scanner;
 
 
-public class Ui {
+public class CLI implements UI{
     Scanner sc = new Scanner(System.in);
 
+
+    public void start (Biblioteka mainLogic){
+
+        boolean nebaigti = true;
+        while (nebaigti) {
+            spausdinkMenu();
+            String vartotojoPasirinkimas = getVartotojoPasirinkimas();
+            nebaigti = mainLogic.apdorokPasirinkima(vartotojoPasirinkimas);
+        }
+        goodbyeAction();
+    }
+
+    @Override
     public void spausdinkMenu() {
         System.out.println("""
               ==========BIBLIOTEKAS VALDYMO PROGRAMA=============
@@ -18,22 +31,24 @@ public class Ui {
                Pasirinkite veiksma
                 """);
     }
-
+    @Override
     public String getVartotojoPasirinkimas() {
         String input = sc.nextLine();
         if (input.isEmpty()) return "";
         return input.substring(0, 1);
     }
-
-    public void scannerClose() {
+    @Override
+    public void goodbyeAction() {
         if (sc != null) sc.close();
     }
 
+    @Override
     public String getUserInput(String msg){
         System.out.print(msg);
         return sc.nextLine();
     }
 
+    @Override
     public void infoOut(String msg){
         System.out.println(msg);
     }
